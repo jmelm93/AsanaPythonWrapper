@@ -14,7 +14,18 @@ A Python script for interfacing with the Asana API to retrieve task details for 
 #.env file
 PERSONAL_ACCESS_TOKEN=your-api-key
 ```
-4. Install the required libraries by running the following command:
+4. [Optional, but Recommended] Create a virtual environment for your project
+```
+python3 -m venv venv
+
+# if on linux or mac OS - run the below to activate the venv
+source venv/bin/activate
+
+# if on windows OS - run the below to activate the venv
+.\venv\Scripts\activate
+
+```
+5. Install the required libraries by running the following command:
 ```
 pip install -r requirements.txt
 ```
