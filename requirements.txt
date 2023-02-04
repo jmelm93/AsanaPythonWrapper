@@ -1,0 +1,4 @@
+pandas==1.5.3
+requests==2.28.2
+asana==3.0.0
+python-dotenv==0.21.1
