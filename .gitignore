@@ -1,4 +1,5 @@
-data/
 .env
+data/
+export_data/
 venv/
 __pycache__/

@@ -4,24 +4,35 @@
 from AsanaClass import AsanaClient
 import logging
 import os
+import pandas as pd 
 from dotenv import load_dotenv
 
 load_dotenv()
-
 logging.basicConfig(level=logging.INFO)
 
-PERSONAL_ACCESS_TOKEN = os.getenv('PERSONAL_ACCESS_TOKEN')
-
-def main():
-    client = AsanaClient(PERSONAL_ACCESS_TOKEN)
-    gid_for_3q = client.get_3q_digital_workspace_id()
-    if gid_for_3q is None:
-        logging.error("3Q Digital Workspace not found")
+def main(workspace, output_dir, token):
+    
+    client = AsanaClient(token)
+    
+    gid_for_workspace = client.get_workspace_id_by_workspace_name(workspace)
+    
+    if gid_for_workspace is None:
+        logging.error(f"Workspace with the name {workspace} does not exist.")
         return
-    project_list = client.list_projects(gid_for_3q)
+    
+    project_list = client.list_projects(gid_for_workspace)
+    
     task_list = client.list_tasks_by_project(project_list[0]['gid'])
+    
     list_task_details = [ client.get_task_details_by_gid(task['gid']) for task in task_list ]
-    client.helper_write_list_of_objects_to_json(list_task_details, 'data/task_details.json')
+    
+    task_details_df = pd.DataFrame(map(client.helper_clean_task_data, list_task_details))
+    
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+        
+    task_details_df.to_csv(f'{output_dir}/task_details.csv', index=False)
 
 if __name__ == '__main__':
-    main()
+    PERSONAL_ACCESS_TOKEN = os.getenv('PERSONAL_ACCESS_TOKEN')
+    main(workspace="3Q Digital", output_dir="export_data", token=PERSONAL_ACCESS_TOKEN)

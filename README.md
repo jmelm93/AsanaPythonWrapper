@@ -29,6 +29,13 @@ source venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
+6. Update the "workspace" found in the below line of code to match the desired workspace for the data extraction
+
+```
+if __name__ == '__main__':
+    main(workspace="3Q Digital") # Update with your desired workspace
+```
+
 ## Usage
 
 The script retrieves all the tasks details for a specific project in the 3Q Digital Workspace and writes the details to a JSON file named "task_details.json" in the "data" directory.  
@@ -43,9 +50,11 @@ python3 main.py
 This class provides an interface to the Asana API and contains the following methods:
 
 - `__init__`: The constructor that initializes the client, retrieves the user's information, and retrieves the workspace ID list.
-- `helper_write_list_of_objects_to_json`: Writes a list of objects to a JSON file.
-- `get_3q_digital_workspace_id`: Returns the ID for the 3Q Digital Workspace.
+- `get_workspace_id_by_workspace_name`: Returns the ID for the workspace that matches the input "workspace_name".
 - `get_projects`: Retrieves a list of projects in a workspace.
 - `list_projects`: Wraps the get_projects method and returns a list of projects.
 - `list_tasks_by_project`: Retrieves a list of tasks for a specific project.
 - `get_task_details_by_gid`: Retrieves task details for a specific task.
+- `helper_write_list_of_objects_to_json`: Writes a list of objects to a JSON file.    
+- `helper_flatten_dict`: Flattens a nested dictionary to a single level.
+- `helper_clean_task_data`: Cleans task data by extracting relevant information and removing unnecessary details.
