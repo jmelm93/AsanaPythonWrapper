@@ -1,11 +1,6 @@
+# AsanaClass.py
 import asana
-import os
 import json
-from dotenv import load_dotenv
-
-load_dotenv()
-
-PERSONAL_ACCESS_TOKEN = os.getenv('PERSONAL_ACCESS_TOKEN')
 
 class AsanaClient:
     def __init__(self, personal_access_token):

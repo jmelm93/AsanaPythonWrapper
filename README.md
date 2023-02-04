@@ -12,7 +12,7 @@ A Python script for interfacing with the Asana API to retrieve task details for 
 3. Add the following line to the ".env" file, replacing "your-api-key" with your actual API key:
 ```
 #.env file
-PERSONAL_ACCESS_TOKEN=your-api-key
+ASANA_PERSONAL_ACCESS_TOKEN=your-api-key
 ```
 4. [Optional, but Recommended] Create a virtual environment for your project
 ```
@@ -45,7 +45,7 @@ To run the script, execute the following command in your terminal:
 python3 main.py
 ```
 
-## Class: AsanaClient
+## Class: AsanaClient (`classes/Asana.py`)
 
 This class provides an interface to the Asana API and contains the following methods:
 
@@ -58,3 +58,14 @@ This class provides an interface to the Asana API and contains the following met
 - `helper_write_list_of_objects_to_json`: Writes a list of objects to a JSON file.    
 - `helper_flatten_dict`: Flattens a nested dictionary to a single level.
 - `helper_clean_task_data`: Cleans task data by extracting relevant information and removing unnecessary details.
+
+## Class: GoogleCloudClient (`classes/GoogleCloud.py`)
+
+... need to create docs ... 
+
+If you'd like to load data into BigQuery, in basic steps, you need to:
+
+1. Add your Google Cloud service account json file to a folder named `service_accounts` (this is blocked in the .gitignore so it will not be pushed to github if you push to a public repo)
+2. From there, you can see an example use-case in the `load_to_bq.py` script.
+
+Keep in mind that the script seen in `load_to_bq.py` is loading a CSV into a DataFrame then loading to DataFrame to BigQuery. However, you do not need to save the original output to a local CSV. You can adjust the `main.py` file to directly write the output DataFrame from the Asana script to write directly to BigQuery!

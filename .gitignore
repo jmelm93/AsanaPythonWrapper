@@ -3,3 +3,4 @@ data/
 export_data/
 venv/
 __pycache__/
+service_accounts/

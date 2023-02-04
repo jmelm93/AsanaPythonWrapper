@@ -1,7 +1,6 @@
 # Developers Doc - https://developers.asana.com/docs/python
-# Python Asana Github - https://github.com/Asana/python-asana/
 
-from AsanaClass import AsanaClient
+from classes.Asana import AsanaClient
 import logging
 import os
 import pandas as pd 
@@ -34,5 +33,5 @@ def main(workspace, output_dir, token):
     task_details_df.to_csv(f'{output_dir}/task_details.csv', index=False)
 
 if __name__ == '__main__':
-    PERSONAL_ACCESS_TOKEN = os.getenv('PERSONAL_ACCESS_TOKEN')
-    main(workspace="3Q Digital", output_dir="export_data", token=PERSONAL_ACCESS_TOKEN)
+    ASANA_PERSONAL_ACCESS_TOKEN = os.getenv('ASANA_PERSONAL_ACCESS_TOKEN')
+    main(workspace="3Q Digital", output_dir="export_data", token=ASANA_PERSONAL_ACCESS_TOKEN)
