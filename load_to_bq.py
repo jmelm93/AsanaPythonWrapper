@@ -18,7 +18,7 @@ data = {
 }
 
 # Initialize the GoogleCloudClient
-gcc = GoogleCloudClient(service_account_path=service_account)
+gcc = GoogleCloudClient(service_account_path=service_account, write_disposition='WRITE_TRUNCATE')
 
 # Write the data to BigQuery
-gcc.write_to_bigquery_tables(data=data, write_disposition='WRITE_TRUNCATE')
+gcc.write_to_bigquery_tables(data)

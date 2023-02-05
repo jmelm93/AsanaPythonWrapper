@@ -70,3 +70,13 @@ If you'd like to load data into BigQuery, in basic steps, you need to:
 2. From there, you can see an example use-case in the `load_to_bq.py` script.
 
 Keep in mind that the script seen in `load_to_bq.py` is loading a CSV into a DataFrame then loading to DataFrame to BigQuery. However, you do not need to save the original output to a local CSV. You can adjust the `main.py` file to directly write the output DataFrame from the Asana script to write directly to BigQuery!
+
+
+## Example: `example_job/example.py`
+
+Script example that:  
+
+1. Gets all teams, tasks, and details. Then, cleans the 
+2. Cleans up the data and provides some custom segmentation 
+3. Gets pre-existing data from Bigquery to figure out whether there have been changes (kind of like UPSERT [update and insert] functionality)
+4. Writes data back into Bigquery

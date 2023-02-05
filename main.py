@@ -60,16 +60,16 @@ def main(workspace, output_dir, token):
     
     gid_for_workspace = client.get_workspace_id_by_workspace_name(workspace)
     
+    #get all teams in org
+    team_list = get_all_teams(client, gid_for_workspace, output_dir)
+    
     if gid_for_workspace is None:
         logging.error(f"Workspace with the name {workspace} does not exist.")
         return
     
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    
-    #get all teams in org
-    team_list = get_all_teams(client, gid_for_workspace, output_dir)
-    
+
     #get all projects for each team
     project_list_generator = get_projects_for_team(client, team_list)
     project_list = list(project_list_generator)
