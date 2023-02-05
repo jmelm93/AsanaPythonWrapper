@@ -1,4 +1,5 @@
-# AsanaClass.py
+# Asana.py
+
 import asana
 import json
 
@@ -22,19 +23,27 @@ class AsanaClient:
         return None
 
 
-    def get_projects(self, workspace_id):
+    def get_projects_from_workspace(self, workspace_id):
         """
         Get the projects within a given workspace.
         """
         return self.client.projects.find_by_workspace(workspace_id, {'archived': False})
 
 
-    def list_projects(self, workspace_id):
+    def get_projects_from_team(self, team_id):
         """
-        List the projects within a given workspace.
+        Get the projects within a given team.
         """
-        projects = self.get_projects(workspace_id)
-        return [project for project in projects]
+        return self.client.projects.find_by_team(team_id, {'archived': False})
+
+
+    def get_teams(self, workspace_id):
+        """
+        List the teams within a given workspace.
+        """
+        # teams = self.get_teams(workspace_id)
+        # return [team for team in teams]
+        return self.client.teams.find_by_organization(workspace_id, {'archived': False})
 
 
     def list_tasks_by_project(self, project_id):

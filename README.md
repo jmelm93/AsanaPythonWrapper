@@ -51,7 +51,9 @@ This class provides an interface to the Asana API and contains the following met
 
 - `__init__`: The constructor that initializes the client, retrieves the user's information, and retrieves the workspace ID list.
 - `get_workspace_id_by_workspace_name`: Returns the ID for the workspace that matches the input "workspace_name".
-- `get_projects`: Retrieves a list of projects in a workspace.
+- `get_projects_from_workspace`: Retrieves a list of projects in a workspace.
+- `get_projects_from_team`: Retrieves a list of projects from a specified team.
+- `list_teams`: Get list of all teams within a workspace.
 - `list_projects`: Wraps the get_projects method and returns a list of projects.
 - `list_tasks_by_project`: Retrieves a list of tasks for a specific project.
 - `get_task_details_by_gid`: Retrieves task details for a specific task.
